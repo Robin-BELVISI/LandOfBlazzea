@@ -1,0 +1,31 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "caca",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && enpmxit 1",
+    "dev": "next dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "enable3d": "^0.25.3",
+    "next": "^13.4.1",
+    "phaser": "^3.55.2",
+    "phaser3-rex-plugins": "^1.1.84",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.3",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "@types/node": "20.1.0",
+    "@types/react": "^18.0.37",
+    "typescript": "^5.0.4"
+  }
+}
