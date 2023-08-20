@@ -142,10 +142,12 @@ export default class MainMenu extends Scene {
 
     console.log(this.titleImg.x + " " + this.titleImg.y);
     this.backgroundImgs.forEach(img => {
+      img.scene = this;
       img.scale = 1.2;
       // console.log("imgs xy : " + img.x + img.y);
     });
     this.elementsImgs.forEach(img => {
+      img.scene = this;
       img.scale = 1.2;
     });
   }
@@ -256,7 +258,7 @@ export default class MainMenu extends Scene {
       //MENU CREATION
       // this.container.add(this.add.image(window.innerWidth/2, window.innerHeight/2+28, "menuDefault").setOrigin(0.5, 0.5).setScale(2.5).setDepth(20));
       // this.menuCreation();
-      this.scene.launch("panelMainMenu");
+      this.scene.launch("panelMainMenu", { music: this.music });
       // this.container.setScale(this.containerScaleFactor*1.5);
       // this.container.setPosition(window.innerWidth/2-(this.container.width/2)*this.containerScaleFactor*1.5, window.innerHeight/2-(this.container.height/2)*this.containerScaleFactor*1.5);
       // this.container.setPosition(window.innerWidth/2, window.innerHeight/2);

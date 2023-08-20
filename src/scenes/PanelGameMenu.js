@@ -130,6 +130,11 @@ export default class PanelGameMenu extends Scene {
                             this.scene.resume("scene1");
                             this.scene.stop();
                         }
+                        if(index==3){
+                            this.scene.start("mainMenu");
+                            this.scene.stop();
+                            this.scene.get("scene1").scene.stop();
+                        }
                     });
                     button.on('pointerover', () => {
                         console.log('pointerover');

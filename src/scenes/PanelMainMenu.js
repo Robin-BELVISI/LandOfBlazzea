@@ -8,10 +8,6 @@ import Game from "../components/Game";
 
 export default class PanelMainMenu extends Scene {
 
-      /** @type {Array<Phaser.GameObjects>} */
-    buttons = [];
-      /** @type {Array<Phaser.GameObjects>} */
-    texts = [];
   
     buttonsChilds = [];
 
@@ -34,13 +30,12 @@ export default class PanelMainMenu extends Scene {
         console.log("init panelMainMenu");
         this.soundButton = this.sound.add('selectionMenu');
         // this.scene.pause("scene1");
-        console.log("scene: panelMainMenu", this.scene);  
+        console.log("scene: panelMainMenu", this.scene);    
     } // Called before preload()
 
-    create() {
+    create(data) {
 
             console.log("PanelMainMenu");
-            
             this.container = this.rexUI.add.label({
                 width: 300, height: 400,
                 orientation: 1,
@@ -56,7 +51,7 @@ export default class PanelMainMenu extends Scene {
             this.container.setPosition(this.sceneCenterX, this.sceneCenterY + 28);
             this.container.add(this.add.image(window.innerWidth/2, window.innerHeight/2+28, "menuDefault").setOrigin(0.5, 0.5).setScale(2.5).setDepth(20));
             // this.container.add(this.buttons[0]);
-            this.menuCreation(this.container,this.texts);
+            this.menuCreation(data);
 
             this.container.alpha = 0;
             //function to make manu opacity 0 to 100 in 500ms
@@ -75,16 +70,17 @@ export default class PanelMainMenu extends Scene {
             this.buttonsChilds.push(this.container.getChildren()[6]);
             this.buttonsChilds.push(this.container.getChildren()[7]);
             this.container.setInteractive();
-
+            console.log("scene: container layer 0", this.container.getLayer(0));
     }
 
     update() { 
        
     }
 
-    menuCreation(container,texts) {
+    menuCreation(data) {
         const tilesetTexture = this.textures.get(this.tilesetKey);
         const buttons = [];
+        const texts = [];
         if (tilesetTexture) {
             // Récupération de la région spécifique du tileset
             const unoverKey= tilesetTexture.getFrameNames()[0];
@@ -130,6 +126,7 @@ export default class PanelMainMenu extends Scene {
                 button.setTexture(this.tilesetKey, overKey);
                 if(index==0){
                     this.scene.start("scene1");
+                    data.music.stop();
                 }
                 });
                 button.on('pointerover', () => {
@@ -143,20 +140,20 @@ export default class PanelMainMenu extends Scene {
                 });
                 // this.container.add(button);
             });
-            container.add(buttons);
+            this.container.add(buttons);
             texts.forEach((text, index) => {
-                container.add(text);
+                this.container.add(text);
                 text.setDepth(40);
             });
         
             }
         }
-        const outlinePipeline = this.plugins.get('rexOutlinePipeline').add(container.getLayer(), {
+        const outlinePipeline = this.plugins.get('rexOutlinePipeline').add(this.container.getLayer(0), {
             thickness: 4, // Épaisseur du contour en pixels
             color: 0xffffff, // Couleur du contour (blanc)
           });
               // Appliquez le pipeline de filtres au conteneur
-              container.getLayer().setPipeline('rexOutlinePipeline');
+              this.container.getLayer(0).setPipeline('rexOutlinePipeline');
     }
 }
     
