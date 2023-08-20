@@ -58,6 +58,8 @@ export default class MainMenu extends Scene {
   bottomLeft;
   bottomRight;
 
+  isStarted;
+
   constructor() {
     super("mainMenu");
   }
@@ -65,6 +67,21 @@ export default class MainMenu extends Scene {
   init() {
     this.music = this.sound.add('intro');
     this.soundButton = this.sound.add('selectionMenu');
+    this.backgroundImgs = [];
+    this.elementsImgs = [];
+    this.perspective = {};
+    this.isPerspective = false;
+    this.isAnyKeyPressed = false;
+    this.titlePipelineInstance;
+    this.backgroundPipelineInstance = [];
+    this.elementsPipelineInstance = [];
+    this.elementsPosition = {
+      element01: {x: 362, y: 372},
+      element02: {x: 412, y: 468},
+      element03: {x: 1137, y: 293},
+      element04: {x: 1153, y: 546},
+      element05: {x: 1209, y: 590},
+    };
   } // Called before preload()
   
   create() {
@@ -166,6 +183,7 @@ export default class MainMenu extends Scene {
   }
 
   applyBlurEffects() {
+    console.log("applyBlurEffects");
     this.backgroundPipelineInstance[0] = this.plugins.get('rexKawaseBlurPipeline').add(this.backgroundImgs[0], {
       blur: 4,
       quality: 12,

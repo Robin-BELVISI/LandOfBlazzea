@@ -46,8 +46,8 @@ export default class Scene1 extends Scene {
   }
 
   init() {
-    this.scene.stop("mainMenu");
-    this.scene.stop("panelMainMenu");
+    this.scene.get("mainMenu").scene.stop();
+    this.scene.get("panelMainMenu").scene.stop();
   } // Called before preload()
   
   create() {
